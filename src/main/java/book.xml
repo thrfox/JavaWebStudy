@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<bookcase> 
+  <book> 
+    <book-name name="firstbook">计算机网络</book-name>  
+    <book-price>20</book-price>  
+    <book-price level="hight">一亿元</book-price> 
+  </book>  
+  <book> 
+    <book-name name="second">Java宝典</book-name>  
+    <book-price>30</book-price> 
+  </book> 
+</bookcase>

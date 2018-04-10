@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>com/study/springmvc/config/springmvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <!--mapping中的name与servlet中的name相同，此mapping才属于该servlet-->
+        <url-pattern>*.action</url-pattern>
+        <!--第一种:*.action    ,访问以.action结尾由DispatcherServlet进行解析
+            第二种:/   ,所有访问的地址都由DispatcherServlet进行解析,对于静态文件的解析需要配置不让DispatcherServlet进行解析(JSP),
+            使用此种风格实现RESTful风格的url
+            第三种:/*  ,不对,使用这种配置,最终转发到一个jsp时,仍然会由DispatcherServlet解析jsp地址,不能根据jsp页面找到handler,会报错
+
+        -->
+    </servlet-mapping>
+</web-app>

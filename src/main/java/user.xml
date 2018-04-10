@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<users>
+    <user id="1" name="aaa" password="123" email="aaa@sina.com"/>
+    <user id="2" name="bbb" password="321" email="bbb@sina.com"/>
+</users>
