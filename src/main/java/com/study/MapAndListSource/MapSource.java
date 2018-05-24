@@ -1,5 +1,7 @@
 package com.study.MapAndListSource;
 
+import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -25,8 +27,24 @@ public class MapSource {
 
         Map conMap = new ConcurrentHashMap();
 
+    }
 
-
+    private static HashMap<Integer,String> map = new HashMap<Integer,String>(2,0.75f);
+    @Test
+    public void HashMapNotSynchronizeTest(){
+            map.put(5, "C");
+            new Thread("Thread1") {
+                public void run() {
+                    map.put(7, "B");
+                    System.out.println(map);
+                }
+            }.start();
+            new Thread("Thread2") {
+                public void run() {
+                    map.put(3, "A");
+                            System.out.println(map);
+                }
+            }.start();
     }
 }
 

@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 
 public class ListSource {
     public static void main(String[] args) {
@@ -28,7 +29,7 @@ public class ListSource {
         //      插入:找到index后,(1)新建Node,同时该Node指向index-1和index;(2)前Node的后引用指向Node,后Node的前引用指向Node
         //           该两步不能颠倒顺序,因为插入的位置是index决定的,找到前后Node也是index决定的,而新建的Node不能分辨前后Node
         //      删除:找到index后,通过前后继引用可以获得前后的Node,连接前后的Node,并将该index.item置null
-
+        List vector = new Vector();
 
 
 
@@ -60,23 +61,32 @@ public class ListSource {
 
     @Test
     public void ListAddTest(){
-        List arrayList = new ArrayList(10002);
+        //1.ArrayList 不扩容-增
+        List<String> arrayList = new ArrayList<String>(10002);
         for (int i = 0; i < 10000; i++) {
-            arrayList.add(i);
+            arrayList.add(String.valueOf(i));
         }
         long arrayStart = System.nanoTime();
-        arrayList.add(10,"a");
+        arrayList.add(100,"a");
         long arrayStop = System.nanoTime();
-        System.out.println("arrayTime: " + (arrayStop-arrayStart));
+        System.out.println("arrayAddTime-index:100: " + (arrayStop-arrayStart));
+        arrayStart = System.nanoTime();
+        arrayList.add(9900,"a");
+        arrayStop = System.nanoTime();
+        System.out.println("arrayAddTime-index:9900: " + (arrayStop-arrayStart));
 
-
-        List linkList = new LinkedList();
+        //增
+        List linkList = new LinkedList<String>();
         for (int i = 0; i < 10000; i++) {
-            linkList.add(i);
+            linkList.add(String.valueOf(i));
         }
         long linkStart = System.nanoTime();
-        linkList.add(10,"a");
+        linkList.add(100,"a");
         long linkStop = System.nanoTime();
-        System.out.println("linkTime: " + (linkStop-linkStart));
+        System.out.println("linkAddTime-index:100: " + (linkStop-linkStart));
+        linkStart = System.nanoTime();
+        linkList.add(9990,"a");
+        linkStop = System.nanoTime();
+        System.out.println("linkAddTime-index:9900: " + (linkStop-linkStart));
     }
 }
