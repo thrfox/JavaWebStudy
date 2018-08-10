@@ -16,7 +16,6 @@ public class MapSource {
         Map hashMap = new HashMap();
 
 
-
         Map Hashtable = new Hashtable();
         //  1.extends Dictionary
 
@@ -24,27 +23,29 @@ public class MapSource {
         Map TreeMap = new TreeMap();
 
 
-
         Map conMap = new ConcurrentHashMap();
 
     }
 
-    private static HashMap<Integer,String> map = new HashMap<Integer,String>(2,0.75f);
+    private static HashMap<Integer, String> map = new HashMap<Integer, String>(2, 0.75f);
+
     @Test
-    public void HashMapNotSynchronizeTest(){
-            map.put(5, "C");
-            new Thread("Thread1") {
-                public void run() {
-                    map.put(7, "B");
-                    System.out.println(map);
-                }
-            }.start();
-            new Thread("Thread2") {
-                public void run() {
-                    map.put(3, "A");
-                            System.out.println(map);
-                }
-            }.start();
+    public void HashMapNotSynchronizeTest() {
+        map.put(5, "C");
+        Thread thread1 = new Thread("Thread1") {
+            public void run() {
+                map.put(7, "B");
+                System.out.println(map);
+            }
+        };
+        Thread thread2 = new Thread("Thread2") {
+            public void run() {
+                map.put(3, "A");
+                System.out.println(map);
+            }
+        };
+        thread1.start();
+        thread2.start();
     }
 }
 

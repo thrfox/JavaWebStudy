@@ -3,6 +3,7 @@ package com.study;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 /**
  * ### IO的分类
@@ -32,5 +33,6 @@ import java.io.FileNotFoundException;
 public class io {
     public void fileStreamTest() throws FileNotFoundException {
         FileInputStream file = new FileInputStream(new File(""));
+        FileReader reader = new FileReader(new File(""));
     }
 }

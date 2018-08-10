@@ -12,7 +12,7 @@ public class XPathTrain {
      * 查找user.xml文档中是否有匹配数据
 
 
-    public static void main(String[] args) throws DocumentException {
+    public static void ThreadMain(String[] args) throws DocumentException {
         String username = "aaa";
         String pw = "123";
 
