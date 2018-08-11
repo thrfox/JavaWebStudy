@@ -44,8 +44,25 @@ public class ThreadMain {
         thread1.run();
         thread2.run();
     }
+
     /*
      * 2.sleep() 和 wait()的区别
+     * sleep()不会释放锁，wait()会将线程释放锁并放入等待池。
+     * 即sleep会让线程带着锁进入阻塞状态，wait()会交出锁再进入阻塞状态，notify()后会进入就绪状态，但如果得不到锁，就无法进入运行状态。
+     * sleep是 ： 运行 → 阻塞 → (sleep结束)运行
+     * wait是  ： 运行 → 阻塞 → (notify)就绪 → (拿到锁后)运行
      */
+    public static void main(String[] args) {
+        ThreadService service = new ThreadService();
+        Thread sleepThread = new Thread(new sleepThread(service));
+        Thread waitThread = new Thread(new waitThread(service));
+
+        //先调用sleep线程，再调用wait线程
+//        sleepThread.start();
+//        waitThread.start();
+        //先调用wait线程，再调用sleep线程
+        waitThread.start();
+        sleepThread.start();
+    }
 
 }
